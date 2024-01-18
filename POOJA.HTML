@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0d8082;
+        text-align: center;
+      }
+
+      .container {
+        height: 70vh;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+      }
+
+      .game {
+        height: 60vmin;
+        width: 60vmin;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5vmin;
+      }
+
+      .box {
+        height: 18vmin;
+        width: 18vmin;
+        border-radius: 7px;
+        border: none;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+        font-size: 8vmin;
+        color: #244756;
+        background-color: #c9d1d6;
+      }
+
+      #reset-btn {
+        color: #f0f3f4;
+        background-color: rgb(2, 26, 26);
+        height: 50px;
+        width: 200px;
+        border-radius: 5px;
+        font-size: larger;
+        font-weight: bold;
+      }
+
+      #new-btn {
+        padding: 1rem;
+        font-size: 1.25rem;
+        background-color: #191913;
+        color: #fff;
+        border-radius: 1rem;
+        border: none;
+      }
+
+      #msg {
+        color: #ffffc7;
+        font-size: 5vmin;
+      }
+
+      .msg-container {
+        height: 100vmin;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 4rem;
+      }
+
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="msg-container hide">
+      <p id="msg">Winner</p>
+      <button id="new-btn">New Game</button>
+    </div>
+
+    <main>
+      <h1>Tic Tac Toe</h1>
+      <div class="container">
+        <div class="game">
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+          <button class="box"></button>
+        </div>
+      </div>
+      <button id="reset-btn">Reset Game</button>
+    </main>
+    <script>
+      alert("wow u are great");
+
+      let boxes = document.querySelectorAll(".box");
+
+      let resetBtn = document.querySelector("#reset-btn");
+      let turn = true;
+      let winPatternes = [
+        [0, 1, 2],
+        [0, 3, 6],
+        [0, 4, 8],
+        [1, 4, 7],
+        [2, 5, 8],
+        [2, 4, 6],
+        [3, 4, 5],
+        [6, 7, 8],
+      ];
+
+      boxes.forEach((box) => {
+        let currentPlayer = "X";
+
+        box.addEventListener("click", () => {
+          if (!box.disabled) {
+            box.innerText = currentPlayer;
+            currentPlayer = currentPlayer === "X" ? "0" : "X";
+            box.disabled = true;
+          }
+        });
+      });
+
+      resetBtn.addEventListener("click", reset());
+
+      function reset() {
+        for (let box of boxes) {
+          box.innerText = " ";
+        }
+      }
+    </script>
+  </body>
+</html>
